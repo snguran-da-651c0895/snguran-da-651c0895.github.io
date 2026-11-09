@@ -1,0 +1,1689 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海角回家入口 - 社区导航与生活指南</title>
+  <meta name="description" content="海角回家入口汇集社区公告、交通指引、生活服务与邻里动态，提供本地资讯、办事流程、周边推荐与常见问题解答，适合常驻居民与返乡访客快速获取实用信息。">
+  <meta name="keywords" content="社区公告,交通指引,生活服务,邻里动态,办事流程">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b5e4a'/%3E%3Cpath d='M8 22 L16 10 L24 22 Z' fill='none' stroke='%23f4c95d' stroke-width='2.2' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='18' r='2.2' fill='%23f4c95d'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #1f2a27;
+      --ink-soft: #3f4e48;
+      --paper: #f7f5ef;
+      --card: #ffffff;
+      --line: #e2ddd0;
+      --brand: #2b5e4a;
+      --brand-deep: #1a3d30;
+      --accent: #d98f2b;
+      --accent-soft: #f4e3c8;
+      --sea: #3a7ca5;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 6px 18px rgba(31, 42, 39, 0.07);
+      --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Hiragino Sans GB", sans-serif;
+      --font-display: "Songti SC", "Noto Serif SC", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 108px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--brand-deep);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* 吸顶公告条 + 页头 */
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(31, 42, 39, 0.06);
+    }
+
+    .notice-bar {
+      background: var(--brand);
+      color: #f4f1e8;
+      font-size: 0.88rem;
+      padding: 0.55rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      letter-spacing: 0.02em;
+    }
+
+    .notice-bar strong {
+      background: rgba(255,255,255,0.16);
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 500;
+      color: #f4c95d;
+      font-size: 0.82rem;
+    }
+
+    .site-header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 0.85rem 1.2rem;
+    }
+
+    .header-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .brand svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      letter-spacing: 0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.15rem 1rem;
+      align-items: center;
+      font-size: 0.94rem;
+    }
+
+    .main-nav a {
+      color: var(--ink-soft);
+      padding: 0.25rem 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover {
+      color: var(--brand);
+      border-bottom-color: var(--accent);
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .quick-links button {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      transition: all 0.2s;
+    }
+
+    .quick-links button:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    .search-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .search-box input {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      width: 160px;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    .search-box input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .no-result {
+      padding: 1rem;
+      background: #fff7e6;
+      border: 1px solid var(--accent-soft);
+      border-radius: var(--radius-sm);
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .no-result.show {
+      display: block;
+    }
+
+    /* 布局 */
+    .layout {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 1.8rem 1.2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 175px minmax(0, 1fr) 240px;
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    /* 左侧频道索引 */
+    .channel-sidebar {
+      position: sticky;
+      top: 112px;
+    }
+
+    .channel-title {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--brand);
+      margin-bottom: 0.9rem;
+      font-weight: 600;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.65rem;
+    }
+
+    .channel-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .channel-list a {
+      display: block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      transition: background 0.2s, color 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .channel-list a:hover {
+      background: #e9e4d8;
+      color: var(--brand-deep);
+      border-left-color: var(--accent);
+    }
+
+    .channel-note {
+      margin-top: 1.6rem;
+      font-size: 0.78rem;
+      color: #7a8a82;
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* 主内容区 */
+    .main-content {
+      min-width: 0;
+    }
+
+    /* 首屏 */
+    .hero {
+      background: linear-gradient(135deg, #1a3d30 0%, #2b5e4a 60%, #3a7ca5 100%);
+      border-radius: var(--radius);
+      padding: 2rem 2rem 1.8rem;
+      color: #f4f1e8;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(244, 201, 93, 0.12);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
+      color: #f9f6ed;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      max-width: 600px;
+      color: #d9e6df;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions a {
+      display: inline-block;
+      background: var(--accent);
+      color: #2b2a1f;
+      font-weight: 600;
+      padding: 0.5rem 1.4rem;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .hero-actions a:hover {
+      background: #f4c95d;
+      color: #1a3d30;
+    }
+
+    .hero-actions a.secondary {
+      background: transparent;
+      border: 1.5px solid rgba(244, 201, 93, 0.7);
+      color: #f4e3c8;
+    }
+
+    .hero-actions a.secondary:hover {
+      background: rgba(244, 201, 93, 0.15);
+    }
+
+    /* 板块通用 */
+    .section {
+      margin-bottom: 2.4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      letter-spacing: 0.01em;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.7rem;
+      line-height: 1.3;
+    }
+
+    .section-header .more {
+      font-size: 0.85rem;
+      color: var(--brand);
+      font-weight: 500;
+    }
+
+    .section-intro {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      max-width: 760px;
+    }
+
+    /* 精选卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s;
+      border: 1px solid var(--line);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #ddd6c8;
+    }
+
+    .card-body {
+      padding: 1rem 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.4rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: var(--accent-soft);
+      color: #7a4e0e;
+      padding: 0.15rem 0.55rem;
+      border-radius: 20px;
+      font-weight: 600;
+      align-self: flex-start;
+      letter-spacing: 0.02em;
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.86rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      font-size: 0.73rem;
+      color: #7a8a82;
+      margin-top: 0.3rem;
+      border-top: 1px dashed var(--line);
+      padding-top: 0.6rem;
+    }
+
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    /* 最新更新列表 */
+    .update-list {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .update-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      padding: 0.7rem 1.1rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .update-item:last-child {
+      border-bottom: none;
+    }
+
+    .update-time {
+      font-size: 0.75rem;
+      color: #8a9a92;
+      white-space: nowrap;
+      min-width: 72px;
+    }
+
+    .update-name {
+      font-weight: 600;
+      color: var(--brand-deep);
+      min-width: 120px;
+    }
+
+    .update-summary {
+      color: var(--ink-soft);
+      font-size: 0.87rem;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .category-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.5rem;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--brand-deep);
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .category-item:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    .category-item .cat-symbol {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    /* 深度解析 */
+    .deep-dive {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      padding: 1.8rem 2rem;
+    }
+
+    .deep-dive h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      margin: 1.4rem 0 0.5rem;
+    }
+
+    .deep-dive h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .deep-dive p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .deep-dive ul {
+      margin: 0.3rem 0 1rem 1.2rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .deep-dive li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* 体验指南 */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1rem 1.1rem;
+    }
+
+    .step-num {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 26px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-card h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      margin-bottom: 0.3rem;
+    }
+
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .faq-list details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 1rem;
+    }
+
+    .faq-list summary {
+      font-weight: 600;
+      color: var(--brand-deep);
+      cursor: pointer;
+      font-size: 0.95rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-list summary::after {
+      content: "▾";
+      color: var(--accent);
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+
+    .faq-list details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-answer {
+      padding-top: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-top: 1px dashed var(--line);
+      margin-top: 0.6rem;
+    }
+
+    /* 用户评论 */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .comment-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      font-size: 0.87rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .comment-user {
+      font-weight: 700;
+      color: var(--brand-deep);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .comment-user .avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: #7a4e0e;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .comment-text {
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .comment-meta {
+      font-size: 0.7rem;
+      color: #9aa8a0;
+    }
+
+    /* 资讯 */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      align-items: flex-start;
+    }
+
+    .news-thumb {
+      width: 68px;
+      height: 68px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #ddd6c8;
+    }
+
+    .news-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .news-title {
+      font-weight: 700;
+      color: var(--brand-deep);
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .news-date {
+      font-size: 0.73rem;
+      color: #8a9a92;
+      margin-bottom: 0.25rem;
+    }
+
+    .news-summary {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    /* 相关推荐 标签索引 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.7rem;
+    }
+
+    .tag-cloud a {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      transition: all 0.15s;
+    }
+
+    .tag-cloud a:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    /* 右侧辅助栏 */
+    .sidebar {
+      position: sticky;
+      top: 112px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .sidebar-block {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem 1rem;
+    }
+
+    .sidebar-block h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--brand-deep);
+      margin-bottom: 0.8rem;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 0.4rem;
+    }
+
+    .rank-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      counter-reset: rank;
+    }
+
+    .rank-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      counter-increment: rank;
+    }
+
+    .rank-list li::before {
+      content: counter(rank);
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 18px;
+      font-size: 0.8rem;
+    }
+
+    .rank-list a {
+      color: var(--ink-soft);
+      transition: color 0.15s;
+    }
+
+    .rank-list a:hover {
+      color: var(--brand);
+    }
+
+    .timeline {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 0.83rem;
+      position: relative;
+      padding-left: 0.9rem;
+      border-left: 2px solid var(--accent-soft);
+    }
+
+    .timeline li {
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: -1.28rem;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .timeline strong {
+      color: var(--brand-deep);
+      display: block;
+      font-size: 0.84rem;
+    }
+
+    .timeline span {
+      color: #7a8a82;
+      font-size: 0.73rem;
+    }
+
+    /* 页尾 */
+    .site-footer {
+      background: var(--brand-deep);
+      color: #cfdcd6;
+      padding: 2rem 1.2rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand .brand-name {
+      color: #f4f1e8;
+      font-size: 1.3rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: #a7b8b0;
+      margin-top: 0.5rem;
+      max-width: 280px;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      color: #f4c95d;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #b8c9c1;
+      font-size: 0.82rem;
+      margin-bottom: 0.3rem;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: #f4c95d;
+    }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: #7f958b;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      max-width: 1380px;
+      margin: 1.6rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.72rem;
+      color: #7f958b;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr 240px;
+        gap: 1.5rem;
+      }
+
+      .channel-sidebar {
+        grid-column: 1 / -1;
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 1rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        padding: 0.8rem 1rem;
+      }
+
+      .channel-title {
+        margin-bottom: 0;
+        border-left: none;
+        padding-left: 0;
+      }
+
+      .channel-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.2rem 0.5rem;
+      }
+
+      .channel-list a {
+        padding: 0.2rem 0.6rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        font-size: 0.85rem;
+      }
+
+      .channel-note {
+        display: none;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 740px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 1rem 0.8rem 2rem;
+      }
+
+      .hero {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero-desc {
+        font-size: 0.92rem;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .guide-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .footer-meta {
+        text-align: left;
+      }
+
+      .header-inner {
+        gap: 0.6rem;
+      }
+
+      .main-nav {
+        gap: 0.2rem 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .search-box input {
+        width: 110px;
+      }
+
+      .quick-links {
+        gap: 0.4rem;
+      }
+
+      .quick-links button {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.7rem;
+      }
+
+      .update-item {
+        flex-wrap: wrap;
+        gap: 0.2rem 0.8rem;
+      }
+
+      .update-name {
+        min-width: auto;
+      }
+
+      .deep-dive {
+        padding: 1.2rem 1rem;
+      }
+
+      .news-item {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .news-thumb {
+        width: 100%;
+        height: 120px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .brand-name {
+        font-size: 1.25rem;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .focus-visible:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 + 页头 -->
+  <div class="sticky-top">
+    <div class="notice-bar">
+      <strong>本周更新</strong> 11 月 8 日新增「海滨步道夜跑灯」检修完成 · 社区巴士 3 号线恢复运营 · 邻里集市本周六开放
+    </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="38" height="38" rx="10" fill="#2b5e4a"/>
+            <path d="M9 27 L19 11 L29 27 Z" stroke="#f4c95d" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="19" cy="22" r="2.8" fill="#f4c95d"/>
+            <path d="M12 30 H26" stroke="#f4c95d" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name">海角回家入口</span>
+        </div>
+        <nav class="main-nav" aria-label="主导航">
+          <a href="/#community-notice">社区公告</a>
+          <a href="/#traffic-guide">交通指引</a>
+          <a href="/#life-service">生活服务</a>
+          <a href="/#neighbor-news">邻里动态</a>
+          <a href="/#faq">常见问题</a>
+        </nav>
+        <div class="quick-links">
+          <div class="search-box">
+            <label for="pageSearch" class="visually-hidden">搜索社区内容</label>
+            <input type="search" id="pageSearch" placeholder="搜索指引/服务/公告" aria-label="搜索社区内容">
+            <button type="button" id="searchBtn" class="focus-visible" style="background:var(--brand);color:#fff;border:none;border-radius:30px;padding:0.35rem 0.9rem;font-size:0.8rem;">查找</button>
+          </div>
+          <button type="button" class="focus-visible" onclick="document.getElementById('traffic-guide').scrollIntoView({behavior:'smooth'})">交通速查</button>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- 主内容区 -->
+  <main class="layout">
+
+    <!-- 左侧频道索引 -->
+    <aside class="channel-sidebar" aria-label="频道索引">
+      <div class="channel-title">频道索引</div>
+      <ul class="channel-list">
+        <li><a href="/#community-notice">社区公告栏</a></li>
+        <li><a href="/#traffic-guide">交通指引</a></li>
+        <li><a href="/#life-service">生活服务</a></li>
+        <li><a href="/#neighbor-news">邻里动态</a></li>
+        <li><a href="/#featured">精选推荐</a></li>
+        <li><a href="/#category">分类入口</a></li>
+        <li><a href="/#deep-dive">深度解析</a></li>
+        <li><a href="/#guide">体验指南</a></li>
+        <li><a href="/#faq">常见问题</a></li>
+        <li><a href="/#comments">用户评论</a></li>
+        <li><a href="/#news">相关资讯</a></li>
+        <li><a href="/#recommend">相关推荐</a></li>
+      </ul>
+      <p class="channel-note">本页汇总海角社区日常出行、办事与邻里活动信息，方便快速查找。</p>
+    </aside>
+
+    <!-- 中间主内容 -->
+    <div class="main-content">
+
+      <!-- 首屏 -->
+      <section class="hero" id="home">
+        <h1>海角回家入口</h1>
+        <p class="hero-desc">汇聚海角社区及周边的生活服务、交通指引、公告通知与邻里动态，提供从日常出行到办事流程的一站式信息参考，适合常住居民与返乡访客使用。</p>
+        <div class="hero-actions">
+          <a href="/#traffic-guide">查看交通指引</a>
+          <a href="/#community-notice" class="secondary">最新公告</a>
+        </div>
+      </section>
+
+      <!-- 1. 主题领域概览 -->
+      <section class="section" id="overview">
+        <div class="section-header">
+          <h2>海角社区生活概览</h2>
+        </div>
+        <p class="section-intro">海角回家入口所指向的，是围绕海角社区及周边形成的一套日常生活信息体系。这里既有面向常住居民的物业通知、交通班次、生活缴费指引，也有面向返乡访客的路线说明、短住建议和周边便民设施介绍。从海滨步道的路灯检修到社区巴士的时刻调整，从邻里集市的摊位招募到长者食堂的菜单更新，每一条信息都对应着具体的生活场景。当前阶段值得关注的内容包括：11 月 8 日起执行的冬季巴士时刻表、海滨步道夜跑灯改造后的开放时间、社区活动中心 11 月课程安排，以及新迁入居民需要办理的居住登记流程。这些信息分散在公告栏、服务窗口和邻里群中，本页将它们归拢到一处，方便按需查找。</p>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section class="section" id="featured">
+        <div class="section-header">
+          <h2>精选内容推荐</h2>
+          <span class="more">6 个条目</span>
+        </div>
+        <div class="card-grid">
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-bus08/400/300" alt="海角社区巴士冬季时刻表公告牌" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">交通指引</span>
+              <h3 class="card-title">社区巴士 3 号线冬季时刻表</h3>
+              <p class="card-desc">自 11 月 1 日起执行冬令时，首班车推迟至 6:40，末班车提前至 20:10。新增“海角东门—菜市场”区间车，早晚高峰 15 分钟一班。</p>
+              <div class="card-meta"><span>更新：11 月 7 日</span><span>热度 982</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-walkway12/400/300" alt="海滨步道夜跑灯改造后实景" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">设施动态</span>
+              <h3 class="card-title">海滨步道夜跑灯检修完成</h3>
+              <p class="card-desc">东段 2.3 公里照明恢复，新增 12 盏低位地灯。开放时间调整为 5:30—22:30，夜间跑步请靠右通行。</p>
+              <div class="card-meta"><span>更新：11 月 8 日</span><span>热度 1105</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-market03/400/300" alt="邻里集市手作摊位现场" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">邻里活动</span>
+              <h3 class="card-title">11 月邻里集市摊位招募</h3>
+              <p class="card-desc">本周六 9:00—15:00 在社区广场设 30 个摊位，手作、旧物、小吃均可申请，报名截止 11 月 10 日。</p>
+              <div class="card-meta"><span>更新：11 月 6 日</span><span>热度 760</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-service22/400/300" alt="社区政务自助服务终端" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">办事流程</span>
+              <h3 class="card-title">居住登记线上办理指南</h3>
+              <p class="card-desc">新迁入居民可通过社区服务号提交租赁合同与身份证影像，审核约 3 个工作日，线下窗口保留人工协助。</p>
+              <div class="card-meta"><span>更新：11 月 5 日</span><span>热度 890</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-dining17/400/300" alt="社区长者食堂午餐菜品" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">生活服务</span>
+              <h3 class="card-title">长者食堂 11 月菜单与订餐</h3>
+              <p class="card-desc">每周一至周五提供午餐，两荤一素 12 元，80 岁以上老人可享 8 折。需提前一天在社区窗口或电话预订。</p>
+              <div class="card-meta"><span>更新：11 月 4 日</span><span>热度 650</span></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <img class="card-img" src="https://picsum.photos/seed/haijiao-center29/400/300" alt="社区活动中心课程表展示墙" width="400" height="300" loading="lazy">
+            <div class="card-body">
+              <span class="card-tag">社区课程</span>
+              <h3 class="card-title">活动中心 11 月公益课表</h3>
+              <p class="card-desc">开设手机摄影、八段锦、亲子绘本三类课程，每班 20 人，11 月 10 日起在活动中心前台登记。</p>
+              <div class="card-meta"><span>更新：11 月 3 日</span><span>热度 540</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. 最新更新 / 动态 -->
+      <section class="section" id="community-notice">
+        <div class="section-header">
+          <h2>最新社区更新</h2>
+        </div>
+        <div class="update-list">
+          <div class="update-item"><span class="update-time">今天 09:30</span><span class="update-name">海滨步道东段</span><span class="update-summary">夜跑灯检修完成，照明恢复至 22:30</span></div>
+          <div class="update-item"><span class="update-time">今天 08:10</span><span class="update-name">社区巴士 3 号线</span><span class="update-summary">冬季时刻表启用，首班 6:40 末班 20:10</span></div>
+          <div class="update-item"><span class="update-time">昨天 17:45</span><span class="update-name">邻里集市</span><span class="update-summary">本周六摊位招募，报名截止 11 月 10 日</span></div>
+          <div class="update-item"><span class="update-time">昨天 15:20</span><span class="update-name">物业服务中心</span><span class="update-summary">11 月 9 日 14:00—17:00 停水检修，请提前储水</span></div>
+          <div class="update-item"><span class="update-time">11 月 7 日</span><span class="update-name">社区活动中心</span><span class="update-summary">公益课表更新，新增亲子绘本班</span></div>
+          <div class="update-item"><span class="update-time">11 月 6 日</span><span class="update-name">长者食堂</span><span class="update-summary">11 月菜单调整，增加软食套餐选项</span></div>
+          <div class="update-item"><span class="update-time">11 月 5 日</span><span class="update-name">居住登记窗口</span><span class="update-summary">线上办理系统升级，审核缩短至 3 个工作日</span></div>
+          <div class="update-item"><span class="update-time">11 月 4 日</span><span class="update-name">海角东门</span><span class="update-summary">非机动车道拓宽工程完工，恢复通行</span></div>
+          <div class="update-item"><span class="update-time">11 月 3 日</span><span class="update-name">社区图书馆</span><span class="update-summary">新增 200 册少儿绘本，开放时间不变</span></div>
+          <div class="update-item"><span class="update-time">11 月 2 日</span><span class="update-name">社区卫生站</span><span class="update-summary">流感疫苗接种预约开放，每周二、四下午</span></div>
+          <div class="update-item"><span class="update-time">11 月 1 日</span><span class="update-name">垃圾分类点</span><span class="update-summary">西区新增两个误时投放点，开放 12:00—14:00</span></div>
+          <div class="update-item"><span class="update-time">10 月 30 日</span><span class="update-name">社区警务室</span><span class="update-summary">11 月 1 日起办理居住证明需携带租赁备案编号</span></div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section" id="category">
+        <div class="section-header">
+          <h2>分类入口</h2>
+        </div>
+        <div class="category-grid">
+          <a class="category-item" href="/#traffic-guide"><span class="cat-symbol">🚌</span> 交通出行</a>
+          <a class="category-item" href="/#life-service"><span class="cat-symbol">🏠</span> 生活缴费</a>
+          <a class="category-item" href="/#community-notice"><span class="cat-symbol">📢</span> 公告通知</a>
+          <a class="category-item" href="/#neighbor-news"><span class="cat-symbol">👥</span> 邻里动态</a>
+          <a class="category-item" href="/#featured"><span class="cat-symbol">🍜</span> 社区食堂</a>
+          <a class="category-item" href="/#guide"><span class="cat-symbol">📋</span> 办事指南</a>
+          <a class="category-item" href="/#faq"><span class="cat-symbol">❓</span> 常见问题</a>
+          <a class="category-item" href="/#news"><span class="cat-symbol">📰</span> 资讯速递</a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="section" id="deep-dive">
+        <div class="section-header">
+          <h2>深度解析：海角社区出行与生活服务要点</h2>
+        </div>
+        <div class="deep-dive">
+          <h3>社区巴士与接驳路线怎么选</h3>
+          <p>海角社区目前有三条内部巴士线路：3 号线连接东门与菜市场，5 号线环社区主路运行，7 号线直达地铁 2 号线海角站。冬季时刻表执行后，3 号线首班车从 6:20 调整为 6:40，对早高峰通勤影响不大，但赶早市买菜的居民需要留意。5 号线班次较密，平峰约 12 分钟一班，适合在社区内短距离移动。7 号线与地铁衔接，早高峰 7:30—8:30 每 10 分钟一班，其余时段 20 分钟一班，建议赶时间的访客优先选择 7 号线接驳地铁。</p>
+          <h3>步行与骑行路线的实际体验</h3>
+          <p>从海角东门沿海滨步道步行至西门约 25 分钟，沿途有遮阴和休息长椅，适合散步或慢跑。夜跑灯检修后，东段 2.3 公里照明条件改善，但西段仍有约 400 米照明较暗，夜间骑行建议绕行社区主路。共享单车在社区内设有 6 个停车点，东门和活动中心点位车辆较多，图书馆点位在下午时段常被借空。</p>
+          <h3>办事窗口与线上渠道的分工</h3>
+          <p>居住登记、老年证申领、生育服务登记等事项已支持线上提交，但涉及原件核验的环节仍需到社区服务中心窗口办理。线上提交后，系统会给出材料清单和预约时段，按提示前往即可。物业报修则建议直接拨打服务中心电话，线上工单在晚间响应较慢。生活缴费方面，水费、电费、燃气费均可在社区服务号内完成，燃气费需绑定户号，新迁入居民可到窗口查询户号。</p>
+          <h3>邻里活动的时间规律</h3>
+          <p>邻里集市固定在每月第一个周六举办，如遇雨天顺延至次周。社区活动中心的公益课通常在月初开放报名，热门课程如八段锦和亲子绘本会在两三天内满员。长者食堂的菜单每月更新一次，每周一在窗口张贴，也可在服务号内查看。这些活动的时间信息容易分散，建议在月初集中查看一次公告栏和社区服务号推送。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 / 消费路径 -->
+      <section class="section" id="guide">
+        <div class="section-header">
+          <h2>体验指南：从哪开始了解海角社区</h2>
+        </div>
+        <p class="section-intro">第一次接触海角社区生活信息，可以按以下顺序逐步了解，避免遗漏关键事项。</p>
+        <div class="guide-steps">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h4>先看交通与位置</h4>
+            <p>确认社区巴士线路和地铁接驳方式，了解东门、西门、活动中心几个主要地标的位置，再根据日常出行方向选择合适路线。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h4>再查办事与生活服务</h4>
+            <p>如果需要办理居住登记、缴费或报修，先看线上渠道是否支持，准备好材料清单，再决定是否前往窗口。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h4>最后关注活动与邻里动态</h4>
+            <p>集市、课程和食堂菜单按月更新，可以在月初集中浏览公告栏，按需安排参与时间。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <h2>常见问题</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>社区巴士 3 号线冬季首班车几点发车？</summary>
+            <div class="faq-answer">11 月 1 日起执行冬令时，3 号线首班车 6:40 从海角东门发出，末班车 20:10 从菜市场返回。早晚高峰约 15 分钟一班，平峰约 25 分钟。</div>
+          </details>
+          <details>
+            <summary>海滨步道夜跑灯现在开到几点？</summary>
+            <div class="faq-answer">东段 2.3 公里照明已恢复，开放时间为 5:30—22:30。西段仍有约 400 米照明较暗，建议夜间跑步选择东段或社区主路。</div>
+          </details>
+          <details>
+            <summary>新迁入居民办理居住登记需要带什么材料？</summary>
+            <div class="faq-answer">需携带身份证、租赁合同及租赁备案编号。线上提交可先上传影像，审核约 3 个工作日，原件核验需到社区服务中心窗口办理。</div>
+          </details>
+          <details>
+            <summary>邻里集市一般什么时候举办？</summary>
+            <div class="faq-answer">固定在每月第一个周六 9:00—15:00，地点在社区广场。如遇雨天顺延至次周。摊位报名通常在集市前一周截止。</div>
+          </details>
+          <details>
+            <summary>长者食堂怎么订餐？价格是多少？</summary>
+            <div class="faq-answer">每周一至周五提供午餐，两荤一素 12 元，80 岁以上老人 8 折。需提前一天在社区窗口或电话预订，可查看当月菜单后选择。</div>
+          </details>
+          <details>
+            <summary>社区公益课在哪里报名？名额紧张吗？</summary>
+            <div class="faq-answer">在社区活动中心前台登记，每月初开放报名。八段锦和亲子绘本班名额较紧张，通常两三天内满员，手机摄影班相对宽松。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section" id="comments">
+        <div class="section-header">
+          <h2>邻里怎么说</h2>
+        </div>
+        <div class="comment-grid">
+          <div class="comment-item"><div class="comment-user"><span class="avatar">海</span> 海角老陈</div><div class="comment-text">3 号线改时间后，早上送孩子刚好赶上 6:40 那班，比以前从容一点。</div><div class="comment-meta">11 月 8 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">林</span> 林间小路</div><div class="comment-text">夜跑灯修好后东段亮多了，但西段那截还是黑，希望下次也能一起修。</div><div class="comment-meta">11 月 8 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">张</span> 张阿姨</div><div class="comment-text">长者食堂的软食套餐不错，适合牙口不好的老人，订餐也方便。</div><div class="comment-meta">11 月 7 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">阿</span> 阿哲</div><div class="comment-text">居住登记线上提交确实快，三天就收到审核通过的短信了。</div><div class="comment-meta">11 月 7 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">市</span> 市集常客</div><div class="comment-text">集市摊位越来越多了，手作区值得逛，就是下午人多有点挤。</div><div class="comment-meta">11 月 6 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">李</span> 李老师</div><div class="comment-text">八段锦班报名靠抢，建议提前定好闹钟，晚十分钟就满了。</div><div class="comment-meta">11 月 6 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">小</span> 小鹿</div><div class="comment-text">5 号线平峰等车时间有点长，希望能加密一点，尤其是中午。</div><div class="comment-meta">11 月 5 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">海</span> 海风</div><div class="comment-text">图书馆新增的少儿绘本质量不错，孩子借了好几本。</div><div class="comment-meta">11 月 5 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">王</span> 王叔</div><div class="comment-text">停水通知看到了，提前储了水，没耽误做饭。</div><div class="comment-meta">11 月 4 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">陈</span> 陈小姐</div><div class="comment-text">共享单车在图书馆点位下午经常没车，建议增加调度。</div><div class="comment-meta">11 月 4 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">赵</span> 赵哥</div><div class="comment-text">7 号线接地铁挺方便，就是末班车有点早，加班回来赶不上。</div><div class="comment-meta">11 月 3 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">周</span> 周周</div><div class="comment-text">亲子绘本班老师讲得很好，孩子很喜欢，就是名额太少。</div><div class="comment-meta">11 月 3 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">吴</span> 吴大爷</div><div class="comment-text">老年证申领可以线上提交，但还是要跑一趟窗口核原件，希望以后能简化。</div><div class="comment-meta">11 月 2 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">郑</span> 郑同学</div><div class="comment-text">手机摄影课很实用，老师带着在步道实拍，比想象中好。</div><div class="comment-meta">11 月 2 日</div></div>
+          <div class="comment-item"><div class="comment-user"><span class="avatar">孙</span> 孙姐</div><div class="comment-text">垃圾分类误时投放点就在楼下，中午扔垃圾方便多了。</div><div class="comment-meta">11 月 1 日</div></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section" id="news">
+        <div class="section-header">
+          <h2>相关资讯</h2>
+        </div>
+        <div class="news-list">
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-busnews11/600/400" alt="社区巴士冬季时刻表调整通知" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">海角社区巴士 3 号线冬季时刻表今日启用</div>
+              <div class="news-date">2026-11-08</div>
+              <div class="news-summary">首班 6:40，末班 20:10，新增海角东门至菜市场区间车，早晚高峰 15 分钟一班。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-lightnews22/600/400" alt="海滨步道夜跑灯检修完成" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">海滨步道东段夜跑灯检修完成，照明恢复至 22:30</div>
+              <div class="news-date">2026-11-08</div>
+              <div class="news-summary">新增 12 盏低位地灯，东段 2.3 公里照明条件改善，西段仍待后续改造。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-marketnews33/600/400" alt="邻里集市摊位招募开启" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">11 月邻里集市开放 30 个摊位，报名截止 11 月 10 日</div>
+              <div class="news-date">2026-11-07</div>
+              <div class="news-summary">本周六 9:00—15:00 在社区广场举办，手作、旧物、小吃均可申请。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-waternews44/600/400" alt="物业停水检修通知" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">11 月 9 日社区部分区域停水检修，请提前储水</div>
+              <div class="news-date">2026-11-06</div>
+              <div class="news-summary">停水时间 14:00—17:00，涉及东门片区和活动中心周边，恢复后可能有短暂浑浊。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-coursenews55/600/400" alt="社区活动中心公益课表" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">活动中心 11 月公益课表公布，新增亲子绘本班</div>
+              <div class="news-date">2026-11-05</div>
+              <div class="news-summary">手机摄影、八段锦、亲子绘本三类课程，11 月 10 日起在前台登记。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/haijiao-residencenews66/600/400" alt="居住登记线上办理系统升级" width="600" height="400" loading="lazy">
+            <div class="news-content">
+              <div class="news-title">居住登记线上系统升级，审核缩短至 3 个工作日</div>
+              <div class="news-date">2026-11-04</div>
+              <div class="news-summary">新迁入居民可提交租赁合同与身份证影像，原件核验仍需到窗口办理。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section" id="recommend">
+        <div class="section-header">
+          <h2>相关推荐</h2>
+        </div>
+        <div class="tag-cloud">
+          <a href="/#traffic-guide">社区巴士 5 号线环线</a>
+          <a href="/#traffic-guide">地铁 2 号线海角站接驳</a>
+          <a href="/#life-service">燃气费户号查询</a>
+          <a href="/#life-service">物业报修电话</a>
+          <a href="/#community-notice">垃圾分类误时投放点</a>
+          <a href="/#neighbor-news">社区图书馆少儿绘本</a>
+          <a href="/#guide">长者食堂订餐流程</a>
+          <a href="/#faq">居住证明租赁备案编号</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 右侧辅助栏 -->
+    <aside class="sidebar" aria-label="辅助信息">
+      <!-- 热门榜单 -->
+      <div class="sidebar-block">
+        <h3>本周邻里热搜</h3>
+        <ol class="rank-list">
+          <li><a href="/#community-notice">社区巴士冬季时刻表</a></li>
+          <li><a href="/#community-notice">海滨步道夜跑灯</a></li>
+          <li><a href="/#community-notice">邻里集市摊位招募</a></li>
+          <li><a href="/#community-notice">11 月 9 日停水通知</a></li>
+          <li><a href="/#life-service">长者食堂软食套餐</a></li>
+          <li><a href="/#life-service">居住登记线上办理</a></li>
+          <li><a href="/#life-service">公益课报名</a></li>
+          <li><a href="/#life-service">流感疫苗预约</a></li>
+        </ol>
+      </div>
+
+      <!-- 条目时间线 -->
+      <div class="sidebar-block">
+        <h3>近期时间线</h3>
+        <ul class="timeline">
+          <li><strong>11 月 8 日</strong><span>夜跑灯检修完成 · 巴士冬季时刻表启用</span></li>
+          <li><strong>11 月 9 日</strong><span>14:00—17:00 停水检修</span></li>
+          <li><strong>11 月 10 日</strong><span>集市摊位报名截止 · 公益课登记开始</span></li>
+          <li><strong>11 月 12 日</strong><span>邻里集市 9:00—15:00</span></li>
+          <li><strong>11 月每周二/四</strong><span>流感疫苗接种下午场</span></li>
+        </ul>
+      </div>
+
+      <!-- 频道快捷入口 -->
+      <div class="sidebar-block">
+        <h3>常用入口</h3>
+        <ul class="rank-list" style="list-style:none;counter-reset:none;">
+          <li style="counter-increment:none;"><a href="/#traffic-guide">交通出行指引</a></li>
+          <li style="counter-increment:none;"><a href="/#life-service">生活缴费说明</a></li>
+          <li style="counter-increment:none;"><a href="/#community-notice">社区公告栏</a></li>
+          <li style="counter-increment:none;"><a href="/#neighbor-news">邻里动态</a></li>
+          <li style="counter-increment:none;"><a href="/#faq">常见问题解答</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">海角回家入口</span>
+        <p>汇聚海角社区及周边的生活服务、交通指引与邻里动态，为居民和访客提供清晰的信息参考。</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h4>社区</h4>
+          <a href="/#community-notice">公告通知</a>
+          <a href="/#neighbor-news">邻里动态</a>
+          <a href="/#featured">精选推荐</a>
+          <a href="/#comments">用户评论</a>
+        </div>
+        <div class="footer-col">
+          <h4>服务</h4>
+          <a href="/#traffic-guide">交通指引</a>
+          <a href="/#life-service">生活服务</a>
+          <a href="/#guide">体验指南</a>
+          <a href="/#faq">常见问题</a>
+        </div>
+        <div class="footer-col">
+          <h4>资讯</h4>
+          <a href="/#news">相关资讯</a>
+          <a href="/#recommend">相关推荐</a>
+          <a href="/#deep-dive">深度解析</a>
+          <a href="/#category">分类入口</a>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <p>部分内容为示例数据，仅用于展示页面结构</p>
+        <p>© 2026 海角回家入口 · 社区信息参考</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>本站为内容聚合示例页面，不构成官方发布或办事依据</span>
+      <span>信息更新至 2026 年 11 月 8 日</span>
+    </div>
+  </footer>
+
+  <!-- 轻量搜索脚本 -->
+  <script>
+    (function() {
+      const searchBtn = document.getElementById('searchBtn');
+      const searchInput = document.getElementById('pageSearch');
+      const mainContent = document.querySelector('.main-content');
+      let noResultEl = document.querySelector('.no-result');
+
+      if (!mainContent) return;
+
+      // 创建无结果提示元素
+      if (!noResultEl) {
+        noResultEl = document.createElement('div');
+        noResultEl.className = 'no-result';
+        noResultEl.textContent = '未找到相关内容，请尝试其他关键词（如“巴士”“食堂”“登记”）。';
+        mainContent.prepend(noResultEl);
+      }
+
+      function clearHighlights() {
+        mainContent.querySelectorAll('mark.search-highlight').forEach(function(mark) {
+          const parent = mark.parentNode;
+          if (parent) {
+            parent.replaceChild(document.createTextNode(mark.textContent), mark);
+            parent.normalize();
+          }
+        });
+      }
+
+      function highlightKeyword(keyword) {
+        clearHighlights();
+        if (!keyword.trim()) return 0;
+        const lowerKeyword = keyword.toLowerCase();
+        let count = 0;
+
+        // 遍历文本节点
+        const walker = document.createTreeWalker(
+          mainContent,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function(node) {
+              if (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE') {
+                return NodeFilter.FILTER_REJECT;
+              }
+              if (node.nodeValue.trim().toLowerCase().includes(lowerKeyword)) {
+                return NodeFilter.FILTER_ACCEPT;
+              }
+              return NodeFilter.FILTER_REJECT;
+            }
+          }
+        );
+
+        const nodesToReplace = [];
+        while (walker.nextNode()) {
+          nodesToReplace.push(walker.currentNode);
+        }
+
+        nodesToReplace.forEach(function(textNode) {
+          const text = textNode.nodeValue;
+          const lowerText = text.toLowerCase();
+          let startIndex = 0;
+          let index;
+          const fragment = document.createDocumentFragment();
+          let lastIndex = 0;
+
+          while ((index = lowerText.indexOf(lowerKeyword, startIndex)) !== -1) {
+            if (index > lastIndex) {
+              fragment.appendChild(document.createTextNode(text.slice(lastIndex, index)));
+            }
+            const mark = document.createElement('mark');
+            mark.className = 'search-highlight';
+            mark.style.backgroundColor = '#f4c95d';
+            mark.style.padding = '0 2px';
+            mark.style.borderRadius = '3px';
+            mark.textContent = text.slice(index, index + keyword.length);
+            fragment.appendChild(mark);
+            lastIndex = index + keyword.length;
+            startIndex = index + keyword.length;
+            count++;
+          }
+
+          if (lastIndex < text.length) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+          }
+
+          if (lastIndex > 0) {
+            const parent = textNode.parentNode;
+            if (parent) {
+              parent.replaceChild(fragment, textNode);
+            }
+          }
+        });
+
+        return count;
+      }
+
+      function performSearch() {
+        const keyword = searchInput.value.trim();
+        const count = highlightKeyword(keyword);
+        if (keyword && count === 0) {
+          noResultEl.classList.add('show');
+        } else {
+          noResultEl.classList.remove('show');
+        }
+      }
+
+      searchBtn.addEventListener('click', performSearch);
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performSearch();
+        }
+      });
+
+      // 如果用户清空搜索框，清除高亮
+      searchInput.addEventListener('input', function() {
+        if (!searchInput.value.trim()) {
+          clearHighlights();
+          noResultEl.classList.remove('show');
+        }
+      });
+    })();
+  </script>
+</body>
+        </html>
